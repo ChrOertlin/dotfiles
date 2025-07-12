@@ -40,14 +40,51 @@ setkey("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope g
 --- nvimtree
 
 local nvimTreeFocusOrToggle = function()
-	local nvimTree = require("nvim-tree.api")
-	local currentBuf = vim.api.nvim_get_current_buf()
-	local currentBufFt = vim.api.nvim_get_option_value("filetype", { buf = currentBuf })
-	if currentBufFt == "NvimTree" then
-		nvimTree.tree.toggle()
-	else
-		nvimTree.tree.focus()
-	end
+    local nvimTree = require("nvim-tree.api")
+    local currentBuf = vim.api.nvim_get_current_buf()
+    local currentBufFt = vim.api.nvim_get_option_value("filetype", { buf = currentBuf })
+    if currentBufFt == "NvimTree" then
+        nvimTree.tree.toggle()
+    else
+        nvimTree.tree.focus()
+    end
 end
 
 setkey("n", "<leader>e", nvimTreeFocusOrToggle, { desc = "nvimtree focus window" })
+
+--- enable diagnostics
+local diagnostic_enabled = true
+local border_highlight_enabled = true
+
+local function toggle_diagnostic_float()
+    diagnostic_enabled = not diagnostic_enabled
+    if diagnostic_enabled then
+        vim.cmd([[
+      autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})
+    ]])
+    else
+        vim.cmd([[autocmd! CursorHold,CursorHoldI]])
+    end
+end
+
+local function toggle_border_highlight()
+    border_highlight_enabled = not border_highlight_enabled
+    if border_highlight_enabled then
+        vim.cmd([[
+      autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335
+    ]])
+    else
+        vim.cmd([[autocmd! ColorScheme]])
+        vim.cmd([[highlight FloatBorder guifg=NONE guibg=NONE]])
+    end
+end
+
+-- Set up key mappings
+setkey('n', '<leader>sd', '', {
+    noremap = true,
+    silent = true,
+    callback = function()
+        toggle_diagnostic_float()
+        toggle_border_highlight()
+    end
+})
