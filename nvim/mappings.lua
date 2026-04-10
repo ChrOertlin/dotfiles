@@ -1,4 +1,4 @@
---- File for assigned mappings
+--  File for assigned mappings
 local setkey = vim.keymap.set
 --- General
 setkey("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
@@ -45,3 +45,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, 'Format buffer')
   end,
 })
+ 
+-- Lazygit
+--
+setkey("n","<leader>lg", "<cmd>LazyGit<cr>", {desc = "LazyGit"})
