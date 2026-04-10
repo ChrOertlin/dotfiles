@@ -5,6 +5,12 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
+--- Cursor blinking
+o.guicursor = "a:blinkwait700-blinkoff400-blinkon240-Cursor/lCursor"
+
+--- Scrolloff
+o.scrolloff = 10
+
 o.laststatus = 3
 o.showmode = false
 
@@ -42,4 +48,24 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
-d.config({ virtual_text = true })
+d.config({
+    underline = false,
+    virtual_text = false, -- Turn off inline diagnostics
+    float = {
+        border = {
+            { "╔", "FloatBorder" },
+            { "═", "FloatBorder" },
+            { "╗", "FloatBorder" },
+            { "║", "FloatBorder" },
+            { "╝", "FloatBorder" },
+            { "═", "FloatBorder" },
+            { "╚", "FloatBorder" },
+            { "║", "FloatBorder" }
+        },
+        source = "always",
+        update_in_insert = true,
+        severity_sort = true,
+    },
+})
+
+o.updatetime = 250
