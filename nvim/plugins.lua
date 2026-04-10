@@ -1,4 +1,4 @@
-vim.pack.add{ 
+vim.pack.add {
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
     { src = "https://github.com/mason-org/mason.nvim"},
     { src = "https://github.com/neovim/nvim-lspconfig"},
@@ -6,9 +6,9 @@ vim.pack.add{
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"},
     { src = "https://github.com/kdheepak/lazygit.nvim"},
     { src = "https://github.com/nvim-lualine/lualine.nvim"},
-    -- { src = ""},
-    -- { src = ""},
-    -- { src = ""},
+    { src = "https://github.com/nvim-lua/plenary.nvim"},
+    { src = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"},
+    { src = "https://github.com/nvim-telescope/telescope.nvim"},
     -- { src = ""},
     -- { src = ""},
     -- { src = ""},
@@ -156,3 +156,29 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+-- Telescope
+--
+require("telescope").setup(
+    {
+  defaults = {
+    prompt_prefix = "   ",
+    selection_caret = " ",
+    entry_prefix = " ",
+    sorting_strategy = "ascending",
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.55,
+      },
+      width = 0.87,
+      height = 0.80,
+    },
+    mappings = {
+      n = { ["q"] = require("telescope.actions").close },
+    },
+  },
+
+  extensions_list = { "themes", "terms" },
+  extensions = {},
+})
