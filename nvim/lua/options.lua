@@ -70,3 +70,8 @@ d.config({
 
 o.updatetime = 250
 opt.conceallevel = 1
+
+-- Disable Copilot suggestions
+vim.g.copilot_filetypes = {
+	["*"] = false,
+}

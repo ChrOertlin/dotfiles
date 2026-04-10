@@ -23,9 +23,8 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-dap-python" },
 	{ src = "https://github.com/mfussenegger/nvim-dap" },
 	{ src = "https://github.com/thehamsta/nvim-dap-virtual-text" },
-	-- { src = ""},
-	-- { src = ""},
-	-- { src = ""},
+	{ src = "https://github.com/github/copilot.vim" },
+	{ src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim" },
 })
 
 vim.cmd.colorscheme("catppuccin-mocha")
