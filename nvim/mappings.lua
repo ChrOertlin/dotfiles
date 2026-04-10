@@ -26,29 +26,29 @@ setkey("n", "<leader>sx", ":close<CR>", { desc = "Split close current split" })
 
 --- LSP
 ---
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local bufnr = args.buf
-    local map = function(mode, lhs, rhs, desc)
-      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-    end
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local map = function(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+		end
 
-    map('n', 'K', vim.lsp.buf.hover, 'LSP Hover')
-    map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
-    map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
-    map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
-    map('n', 'gr', vim.lsp.buf.references, 'References')
-    map('n', '<leader>rn', vim.lsp.buf.rename, 'Rename symbol')
-    map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, 'Code action')
-    map('n', '<leader>f', function()
-      vim.lsp.buf.format({ async = true })
-    end, 'Format buffer')
-  end,
+		map("n", "K", vim.lsp.buf.hover, "LSP Hover")
+		map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+		map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+		map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+		map("n", "gr", vim.lsp.buf.references, "References")
+		map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+		map("n", "<leader>f", function()
+			vim.lsp.buf.format({ async = true })
+		end, "Format buffer")
+	end,
 })
- 
+
 -- Lazygit
 --
-setkey("n","<leader>lg", "<cmd>LazyGit<cr>", {desc = "LazyGit"})
+setkey("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 
 --- Telescope mappings
 local telescope_builtin = require("telescope.builtin")
@@ -59,14 +59,14 @@ setkey("n", "<leader>fg", telescope_builtin.git_files, { desc = "Telescope git f
 --- nvimtree
 
 local nvimTreeFocusOrToggle = function()
-    local nvimTree = require("nvim-tree.api")
-    local currentBuf = vim.api.nvim_get_current_buf()
-    local currentBufFt = vim.api.nvim_get_option_value("filetype", { buf = currentBuf })
-    if currentBufFt == "NvimTree" then
-        nvimTree.tree.toggle()
-    else
-        nvimTree.tree.focus()
-    end
+	local nvimTree = require("nvim-tree.api")
+	local currentBuf = vim.api.nvim_get_current_buf()
+	local currentBufFt = vim.api.nvim_get_option_value("filetype", { buf = currentBuf })
+	if currentBufFt == "NvimTree" then
+		nvimTree.tree.toggle()
+	else
+		nvimTree.tree.focus()
+	end
 end
 
 setkey("n", "<leader>e", nvimTreeFocusOrToggle, { desc = "nvimtree focus window" })
@@ -76,34 +76,34 @@ local diagnostic_enabled = true
 local border_highlight_enabled = true
 
 local function toggle_diagnostic_float()
-    diagnostic_enabled = not diagnostic_enabled
-    if diagnostic_enabled then
-        vim.cmd([[
+	diagnostic_enabled = not diagnostic_enabled
+	if diagnostic_enabled then
+		vim.cmd([[
       autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, max_width=80})
     ]])
-    else
-        vim.cmd([[autocmd! CursorHold,CursorHoldI]])
-    end
+	else
+		vim.cmd([[autocmd! CursorHold,CursorHoldI]])
+	end
 end
 
 local function toggle_border_highlight()
-    border_highlight_enabled = not border_highlight_enabled
-    if border_highlight_enabled then
-        vim.cmd([[
+	border_highlight_enabled = not border_highlight_enabled
+	if border_highlight_enabled then
+		vim.cmd([[
       autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335
     ]])
-    else
-        vim.cmd([[autocmd! ColorScheme]])
-        vim.cmd([[highlight FloatBorder guifg=NONE guibg=NONE]])
-    end
+	else
+		vim.cmd([[autocmd! ColorScheme]])
+		vim.cmd([[highlight FloatBorder guifg=NONE guibg=NONE]])
+	end
 end
 
 -- Set up key mappings
-setkey('n', '<leader>sd', '', {
-    noremap = true,
-    silent = true,
-    callback = function()
-        toggle_diagnostic_float()
-        toggle_border_highlight()
-    end
+setkey("n", "<leader>sd", "", {
+	noremap = true,
+	silent = true,
+	callback = function()
+		toggle_diagnostic_float()
+		toggle_border_highlight()
+	end,
 })

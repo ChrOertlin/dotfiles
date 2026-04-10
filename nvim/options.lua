@@ -49,23 +49,23 @@ o.timeoutlen = 400
 o.undofile = true
 
 d.config({
-    underline = false,
-    virtual_text = false, -- Turn off inline diagnostics
-    float = {
-        border = {
-            { "╔", "FloatBorder" },
-            { "═", "FloatBorder" },
-            { "╗", "FloatBorder" },
-            { "║", "FloatBorder" },
-            { "╝", "FloatBorder" },
-            { "═", "FloatBorder" },
-            { "╚", "FloatBorder" },
-            { "║", "FloatBorder" }
-        },
-        source = "always",
-        update_in_insert = true,
-        severity_sort = true,
-    },
+	underline = false,
+	virtual_text = false, -- Turn off inline diagnostics
+	float = {
+		border = {
+			{ "╔", "FloatBorder" },
+			{ "═", "FloatBorder" },
+			{ "╗", "FloatBorder" },
+			{ "║", "FloatBorder" },
+			{ "╝", "FloatBorder" },
+			{ "═", "FloatBorder" },
+			{ "╚", "FloatBorder" },
+			{ "║", "FloatBorder" },
+		},
+		source = "always",
+		update_in_insert = true,
+		severity_sort = true,
+	},
 })
 
 o.updatetime = 250
