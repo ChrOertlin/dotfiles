@@ -107,3 +107,48 @@ setkey("n", "<leader>sd", "", {
 		toggle_border_highlight()
 	end,
 })
+
+-- DAP
+--
+local dap = require("dap")
+local dapui = require("dapui")
+local dap_python = require("dap-python")
+-- Tests
+setkey("n", "<leader>dm", function()
+	dap_python.test_method()
+end, { desc = "Test Function" })
+
+setkey("n", "<leader>dc", function()
+	dap.toggle_class()
+end, { desc = "Test Class" })
+
+-- Breakpoints
+setkey("n", "<leader>db", function()
+	dap.toggle_breakpoint()
+end, { desc = "Toggle Breakpoint" })
+
+-- Debug flow
+setkey("n", "<leader>ds", function()
+	dap.continue()
+end, { desc = "Continue / Start" })
+
+setkey("n", "<leader>do", function()
+	dap.step_over()
+end, { desc = "Step Over" })
+
+setkey("n", "<leader>di", function()
+	dap.step_into()
+end, { desc = "Step Into" })
+
+setkey("n", "<leader>dO", function()
+	dap.step_out()
+end, { desc = "Step Out" })
+
+setkey("n", "<leader>dq", function()
+	dap.terminate()
+end, { desc = "Terminate" })
+
+-- UI
+setkey("n", "<leader>du", function()
+	dapui.toggle()
+end, { desc = "Toggle Debug UI" })

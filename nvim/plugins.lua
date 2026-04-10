@@ -16,11 +16,13 @@ vim.pack.add({
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
-	-- { src = ""},
-	-- { src = ""},
-	-- { src = ""},
-	-- { src = ""},
-	-- { src = ""},
+	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
+	{ src = "https://github.com/nvim-neotest/nvim-nio" },
+	{ src = "https://github.com/rcarriga/nvim-dap-ui" },
+	{ src = "https://github.com/mfussenegger/nvim-dap-python" },
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/thehamsta/nvim-dap-virtual-text" },
 	-- { src = ""},
 	-- { src = ""},
 	-- { src = ""},
@@ -322,3 +324,43 @@ require("gitsigns").setup({
 		changedelete = { text = "󱕖" },
 	},
 })
+
+-- DAP
+--
+local dap = require("dap")
+local dapui = require("dapui")
+local dap_python = require("dap-python")
+
+-- UI
+dapui.setup({})
+
+require("nvim-dap-virtual-text").setup({
+	commented = true,
+})
+
+-- Python
+dap_python.setup("python3")
+dap_python.test_runner = "pytest"
+
+-- Signs
+vim.fn.sign_define("DapBreakpoint", {
+	text = "",
+	texthl = "DiagnosticSignError",
+})
+
+vim.fn.sign_define("DapBreakpointRejected", {
+	text = "",
+	texthl = "DiagnosticSignError",
+})
+
+vim.fn.sign_define("DapStopped", {
+	text = "",
+	texthl = "DiagnosticSignWarn",
+	linehl = "Visual",
+	numhl = "DiagnosticSignWarn",
+})
+
+-- Auto open UI
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open()
+end
