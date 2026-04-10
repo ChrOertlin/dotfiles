@@ -363,3 +363,22 @@ vim.fn.sign_define("DapStopped", {
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
 end
+
+-- Copilot chat
+--
+require("CopilotChat").setup({
+	model = "claude-opus-4.6",
+	temperature = 0.1,
+	window = {
+		layout = "vertical",
+		width = 0.4,
+		border = "rounded",
+	},
+	headers = {
+		user = "👤 You",
+		assistant = "🤖 Copilot",
+		tool = "🔧 Tool",
+	},
+
+	auto_insert_mode = false,
+})

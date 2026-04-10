@@ -1,4 +1,3 @@
---  File for assigned mappings
 local setkey = vim.keymap.set
 --- General
 setkey("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
@@ -152,3 +151,19 @@ end, { desc = "Terminate" })
 setkey("n", "<leader>du", function()
 	dapui.toggle()
 end, { desc = "Toggle Debug UI" })
+
+-- Copilot chat
+--
+local chat = require("CopilotChat")
+setkey("n", "<leader>cco", function()
+	chat.open()
+end, { desc = "CP Open" })
+setkey("n", "<leader>ccq", function()
+	chat.close()
+end, { desc = "CP Close" })
+setkey("n", "<leader>ccr", function()
+	chat.reset()
+end, { desc = "CP Reset" })
+setkey("n", "<leader>ccs", function()
+	chat.stop()
+end, { desc = "CP Stop" })
