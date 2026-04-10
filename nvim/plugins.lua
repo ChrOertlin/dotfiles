@@ -15,7 +15,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-tree.lua" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
-	-- { src = ""},
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	-- { src = ""},
 	-- { src = ""},
 	-- { src = ""},
@@ -312,4 +312,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(args)
 		require("conform").format({ bufnr = args.buf })
 	end,
+})
+
+-- Gitsigns
+--
+require("gitsigns").setup({
+	signs = {
+		delete = { text = "󰍵" },
+		changedelete = { text = "󱕖" },
+	},
 })
