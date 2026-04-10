@@ -69,3 +69,4 @@ d.config({
 })
 
 o.updatetime = 250
+opt.conceallevel = 1
