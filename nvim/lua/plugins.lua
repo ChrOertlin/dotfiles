@@ -31,6 +31,7 @@ vim.pack.add({
 	{ src = "https://github.com/saadparwaiz1/cmp_luasnip" },
 	{ src = "https://github.com/hrsh7th/cmp-buffer" },
 	{ src = "https://github.com/hrsh7th/cmp-path" },
+	{ src = "https://github.com/alexghergh/nvim-tmux-navigation" },
 })
 
 vim.cmd.colorscheme("catppuccin-mocha")
@@ -443,6 +444,11 @@ require("CopilotChat").setup({
 		assistant = "🤖 Copilot",
 		tool = "🔧 Tool",
 	},
-
+	mappings = {
+		reset = {
+			normal = "<C-r>",
+			insert = "<C-r>",
+		},
+	},
 	auto_insert_mode = false,
 })
