@@ -32,6 +32,7 @@ vim.pack.add({
 	{ src = "https://github.com/hrsh7th/cmp-buffer" },
 	{ src = "https://github.com/hrsh7th/cmp-path" },
 	{ src = "https://github.com/alexghergh/nvim-tmux-navigation" },
+	{ src = "https://github.com/obsidian-nvim/obsidian.nvim" },
 })
 
 vim.cmd.colorscheme("catppuccin-mocha")
@@ -451,4 +452,16 @@ require("CopilotChat").setup({
 		},
 	},
 	auto_insert_mode = false,
+})
+
+-- Obsidian
+--
+require("obsidian").setup({
+	legacy_commands = false, -- this will be removed in 4.0.0
+	workspaces = {
+		{
+			name = "SSC",
+			path = "/home/chroer/Documents/vault",
+		},
+	},
 })
