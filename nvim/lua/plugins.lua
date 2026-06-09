@@ -433,7 +433,7 @@ end
 -- Copilot chat
 --
 require("CopilotChat").setup({
-	model = "claude-opus-4.6",
+	model = "claude-opus-4.8",
 	temperature = 0.1,
 	window = {
 		layout = "vertical",
